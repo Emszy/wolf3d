@@ -9,8 +9,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIDTH 			512
-# define HEIGHT 		384
+# define WIDTH 			250
+# define HEIGHT 		250
 # define mapWidth		24
 # define mapHeight		24
 
@@ -27,15 +27,58 @@
 
 # define sign(x) ((x>0)?1:((x<0)?-1:0))
 
+typedef struct s_position
+{
+	double x;
+	double y;   
+	double dir_x;
+	double dir_y;   
+	double plane_x;
+	double plane_y; 
+	double time;
+	double oldTime;
+	int color;
+}				t_pos;
+
+typedef struct s_ray
+{
+	  double camera_x;
+      double pos_x;
+      double pos_y;
+      double dir_x;
+      double dir_y;
+      double side_dist_x;
+      double side_dist_y;
+      double delta_dist_x;
+      double delta_dist_y;
+      double perp_wall_dist;
+}				t_ray;
+
+typedef struct s_line
+{
+
+}				t_lines;
+
 typedef struct	s_connection
 {
 	void			*mlx;
 	void			*win;
+	t_keys			key;
+	t_pos			pos;
+	t_ray			ray;
+	t_lines			line;
 }				t_connection;
 
-void  init_window(t_connection *obj);
-void  initializer(t_connection *obj);
-void  error_master5000(char *message);
+void  	chorus(t_connection *obj);
+void 	draw(t_connection *obj, int x1,int y1,int x2,int y2);
+void 	ray_calc(t_connection *obj);
+int   	tog_key(int key, int on_off);
+int   	key_up_hook(int keycode, t_connection *obj);
+int   	key_down_hook(int keycode, t_connection *obj);
+void  	init_window(t_connection *obj);
+void  	initializer(t_connection *obj);
+void  	error_master5000(char *message);
+int 	worldMap[mapWidth][mapHeight];
 
 
 #endif

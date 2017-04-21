@@ -48,6 +48,10 @@
 typedef struct	s_keys
 {
 	int		space;
+	int		w;
+	int		a;
+	int		s;
+	int		d;
 }				t_keys;
 
 #endif
