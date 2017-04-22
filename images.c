@@ -22,36 +22,31 @@ void	draw_pixel_to_img(t_connection *obj, int x, int y, int color)
 	}
 }
 
-void choose_color(t_connection *obj, int side, int map_x, int map_y)
+void choose_color(t_connection *obj, int side)
 {
-      if (worldMap[map_x][map_y] == 1)
-        obj->pos.color = RED;
-      else if (worldMap[map_x][map_y] == 2)
+      if (side == 1)
+      {
+        if ((obj->ray.step_x == -1 && obj->ray.step_y == -1) ||
+          (obj->ray.step_x == 1 && obj->ray.step_y == -1))
+          obj->pos.color = RED;
+        if ((obj->ray.step_x == -1 && obj->ray.step_y == 1) ||
+          (obj->ray.step_x == 1 && obj->ray.step_y == 1))
           obj->pos.color = GREEN;
-      else if (worldMap[map_x][map_y] == 3)
-          obj->pos.color = BLUE;
-      else if (worldMap[map_x][map_y] == 4)
-          obj->pos.color = WHITE;
+      }
       else
-          obj->pos.color = YELLOW;
-       if (side == 1 && obj->pos.color == RED) 
-        obj->pos.color = SHADOW_RED;
-       if (side == 1 && obj->pos.color == GREEN) 
-        obj->pos.color = SHADOW_GREEN;
-       if (side == 1 && obj->pos.color == BLUE) 
-        obj->pos.color = SHADOW_BLUE;
-       if (side == 1 && obj->pos.color == GREEN) 
-        obj->pos.color = SHADOW_GREEN;
-      if (side == 1 && obj->pos.color == WHITE) 
-        obj->pos.color = SHADOW_WHITE;
-       if (side == 1 && obj->pos.color == YELLOW) 
-        obj->pos.color = SHADOW_YELLOW;
+      {
+        if ((obj->ray.step_x == -1 && obj->ray.step_y == -1) ||
+        (obj->ray.step_x == -1 && obj->ray.step_y == 1))
+        obj->pos.color = BLUE;
+        else
+          obj->pos.color = WHITE;
+      }
 }
 
 void draw(t_connection *obj, int line_height, int side, int x)
 {
-	int draw_start;
-  	int draw_end;
+	   int draw_start;
+  	 int draw_end;
 
 	draw_start = -line_height / 2 + HEIGHT / 2;
 	if(draw_start < 0)
@@ -59,8 +54,8 @@ void draw(t_connection *obj, int line_height, int side, int x)
 	draw_end = line_height / 2 + HEIGHT / 2;
 	if(draw_end >= HEIGHT)
         draw_end = HEIGHT - 1;
-      choose_color(obj, side, obj->ray.map_x, obj->ray.map_y);
-      put_line(obj, x, draw_start, draw_end);
+  choose_color(obj, side);
+  put_line(obj, x, draw_start, draw_end);
 }
 
 void put_line(t_connection *obj, int x1,int y1, int y2)

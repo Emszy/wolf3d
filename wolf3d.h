@@ -7,13 +7,16 @@
 # include "key_map.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include <time.h>
+# include <sys/time.h>
 # include <math.h>
 
-# define WIDTH 			800
-# define HEIGHT 		800
+# define WIDTH 			640
+# define HEIGHT 		480
 # define mapWidth		24
 # define mapHeight		24
-
+# define TEXTURE_WIDTH	64
+# define TEXTURE_HEIGHT	64
 
 # define PURPLE			0x00ca2bf2
 # define WHITE			0x00ffffff
@@ -94,7 +97,7 @@ int   	key_up_hook(int keycode, t_connection *obj);
 int   	key_down_hook(int keycode, t_connection *obj);
 void 	create_img(t_connection *obj);
 void	draw_pixel_to_img(t_connection *obj, int x, int y, int color);
-void 	choose_color(t_connection *obj, int side, int map_x, int map_y);
+void 	choose_color(t_connection *obj, int side);
 void 	draw(t_connection *obj, int line_height, int side, int x);
 void 	put_line(t_connection *obj, int x1,int y1, int y2);
 

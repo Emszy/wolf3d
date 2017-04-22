@@ -27,7 +27,6 @@ void rotate_left(t_connection *obj, double rotation_speed)
       oldPlaneX = obj->pos.plane_x;
       obj->pos.plane_x = obj->pos.plane_x * cos(rotation_speed) - obj->pos.plane_y * sin(rotation_speed);
       obj->pos.plane_y = oldPlaneX * sin(rotation_speed) + obj->pos.plane_y * cos(rotation_speed);
-
 }
 
 void rotate_right(t_connection *obj, double rotation_speed)
@@ -48,8 +47,8 @@ void move_check(t_connection *obj)
   double move_speed;
   double rotation_speed;
   
-  rotation_speed = 0.1;
-  move_speed = 0.15;
+  rotation_speed = 0.2;
+  move_speed = 0.3;
   if (obj->key.w == 1)
         move_forward(obj, move_speed);
   if (obj->key.s == 1)

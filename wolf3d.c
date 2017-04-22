@@ -126,12 +126,13 @@ int projection_dis(t_connection *obj, int side)
 
 void ray_calc(t_connection *obj)
 {
-  int x;
-  int side;
-  int line_height;
-  create_img(obj);
-  x = -1;
-  side = 0;
+	int x;
+	int side;
+	int line_height;
+
+	x = -1;
+	side = 0;
+	create_img(obj);
     while(++x < WIDTH)
     {
 		calc_ray_position(obj, x);
@@ -148,6 +149,9 @@ void ray_calc(t_connection *obj)
 int main(void)
 {
   t_connection *obj;
+
+
+
 
   obj = malloc(sizeof(t_connection));
   initializer(obj);

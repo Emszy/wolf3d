@@ -37,7 +37,6 @@ void	init_pos_var(t_connection *obj)
   obj->pos.time = 0;     
   obj->pos.oldTime = 0;
   obj->pos.color = 0;
-  obj->pos.texture = 0;
 }
 
 void init_keys(t_connection *obj)
@@ -59,5 +58,5 @@ void  initializer(t_connection *obj)
 	init_pos_var(obj);
 	init_ray_var(obj);
 	init_keys(obj);
-  	init_window(obj);
+  init_window(obj);
 }
