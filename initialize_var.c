@@ -28,7 +28,7 @@ void init_ray_var(t_connection *obj)
 
 void	init_pos_var(t_connection *obj)
 {
-  obj->pos.x = 21;
+  obj->pos.x = 20;
   obj->pos.y = 15;
   obj->pos.dir_x = -1;
   obj->pos.dir_y = 0;     
@@ -37,6 +37,7 @@ void	init_pos_var(t_connection *obj)
   obj->pos.time = 0;     
   obj->pos.oldTime = 0;
   obj->pos.color = 0;
+  obj->pos.texture = 0;
 }
 
 void init_keys(t_connection *obj)
@@ -60,13 +61,3 @@ void  initializer(t_connection *obj)
 	init_keys(obj);
   	init_window(obj);
 }
-
-void  error_master5000(char *message)
-{
-  ft_putstr(message);
-  ft_putstr("\n");
-  exit(-1);
-}
-
-
-
