@@ -5,17 +5,21 @@ FLAGS = -Wall -Wextra -Werror
 
 SRC =	\
 		wolf3d.c \
+		distances.c \
 		initialize_var.c \
 		movement.c \
 		hooks.c \
-		images.c
+		images.c \
+		maps.c
 		
 INPUT_OBJ =	\
 		initialize_var.o \
+		distances.o \
 		wolf3d.o \
 		movement.o \
 		hooks.o \
-		images.o
+		images.o \
+		maps.o
 
 OBJ = $(patsubst %.c,%.o,$(addprefix ./, $(SRC)))
 

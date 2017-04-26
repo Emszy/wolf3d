@@ -5,7 +5,6 @@
 # include "libraries/libft/libft.h"
 # include "libraries/minilibx_macos/mlx.h"
 # include "key_map.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
 # include <sys/time.h>
@@ -13,8 +12,8 @@
 
 # define WIDTH 			640
 # define HEIGHT 		480
-# define mapWidth		24
-# define mapHeight		24
+# define mapWidth		50
+# define mapHeight		50
 # define TEXTURE_WIDTH	64
 # define TEXTURE_HEIGHT	64
 
@@ -30,37 +29,38 @@
 # define GREEN			0x001ae000
 # define SHADOW_GREEN	0x00129301
 
-
 typedef struct s_position
 {
-	double x;
-	double y;   
-	double dir_x;
-	double dir_y;   
-	double plane_x;
-	double plane_y; 
-	double time;
-	double oldTime;
-	int texture;
-	int color;
+	double 	x;
+	double 	y;
+	double 	speed;
+	double 	rot_speed;
+	double 	dir_x;
+	double 	dir_y;   
+	double 	plane_x;
+	double 	plane_y;
+	int 	win_low;
+	int 	win_high;
+	int 	texture;
+	int 	color;
 }				t_pos;
 
 typedef struct s_ray
 {
-	  double camera_x;
-      double pos_x;
-      double pos_y;
-      double dir_x;
-      double dir_y;
-      double side_dist_x;
-      double side_dist_y;
-      double delta_dist_x;
-      double delta_dist_y;
-      double perp_wall_dist;
-      int map_x;
-      int map_y;
-      int step_x;
-      int step_y;
+	  double 	camera;
+      double 	x;
+      double 	y;
+      double 	dir_x;
+      double 	dir_y;
+      double 	side_dist_x;
+      double 	side_dist_y;
+      double 	delta_dist_x;
+      double 	delta_dist_y;
+      double 	perp_wall_dist;
+      int		map_x;
+      int		map_y;
+      int		step_x;
+      int		step_y;
 }				t_ray;
 
 typedef struct s_image
@@ -76,6 +76,8 @@ typedef struct	s_connection
 {
 	void			*mlx;
 	void			*win;
+	int				map[mapWidth][mapHeight];
+	int 			map_chosen;
 	t_image			img;
 	t_keys			key;
 	t_pos			pos;
@@ -83,11 +85,20 @@ typedef struct	s_connection
 }				t_connection;
 
 void  	chorus(t_connection *obj);
-void 	ray_calc(t_connection *obj);
+void	win_building(t_connection *obj, int x, int y, int offset);
+void	reset_map(t_connection *obj);
+void	random_map_1(t_connection *obj);
+void	random_map_2(t_connection *obj);
 int   	tog_key(int key, int on_off);
+int		loop_hook(t_connection *obj);
 void  	init_window(t_connection *obj);
 void  	initializer(t_connection *obj);
 void  	error_master5000(char *message);
+void	calc_ray_position(t_connection *obj, int x);
+void	calc_side_length(t_connection *obj);
+int		wcalc_line_distance(t_connection *obj);
+int		projection_dis(t_connection *obj, int side);
+void	ray_calc(t_connection *obj);
 void 	move_forward(t_connection *obj, double move_speed);
 void 	move_backwards(t_connection *obj, double move_speed);
 void 	rotate_left(t_connection *obj, double rotation_speed);
@@ -100,9 +111,5 @@ void	draw_pixel_to_img(t_connection *obj, int x, int y, int color);
 void 	choose_color(t_connection *obj, int side);
 void 	draw(t_connection *obj, int line_height, int side, int x);
 void 	put_line(t_connection *obj, int x1,int y1, int y2);
-
-
-int 	worldMap[mapWidth][mapHeight];
-
 
 #endif

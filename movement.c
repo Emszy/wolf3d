@@ -2,17 +2,17 @@
 
 void move_forward(t_connection *obj, double move_speed)
 {
-  if(worldMap[(int)(obj->pos.x + obj->pos.dir_x * move_speed)][(int)(obj->pos.y)] == 0)
+  if(obj->map[(int)(obj->pos.x + obj->pos.dir_x * move_speed)][(int)(obj->pos.y)] == 0)
         obj->pos.x += obj->pos.dir_x * move_speed;
-  if(worldMap[(int)(obj->pos.x)][(int)(obj->pos.y + obj->pos.dir_y * move_speed)] == 0)
+  if(obj->map[(int)(obj->pos.x)][(int)(obj->pos.y + obj->pos.dir_y * move_speed)] == 0)
         obj->pos.y += obj->pos.dir_y * move_speed;
 }
 
 void move_backwards(t_connection *obj, double move_speed)
 {
-  if(!worldMap[(int)(obj->pos.x - obj->pos.dir_x * move_speed)][(int)(obj->pos.y)])
+  if(!obj->map[(int)(obj->pos.x - obj->pos.dir_x * move_speed)][(int)(obj->pos.y)])
     obj->pos.x -= obj->pos.dir_x * move_speed;
-  if(!worldMap[(int)(obj->pos.x)][(int)(obj->pos.y - obj->pos.dir_y * move_speed)])
+  if(!obj->map[(int)(obj->pos.x)][(int)(obj->pos.y - obj->pos.dir_y * move_speed)])
     obj->pos.y -= obj->pos.dir_y * move_speed;
 }
 
@@ -44,17 +44,12 @@ void rotate_right(t_connection *obj, double rotation_speed)
 
 void move_check(t_connection *obj)
 {
-  double move_speed;
-  double rotation_speed;
-  
-  rotation_speed = 0.2;
-  move_speed = 0.3;
   if (obj->key.w == 1)
-        move_forward(obj, move_speed);
+        move_forward(obj, obj->pos.speed);
   if (obj->key.s == 1)
-        move_backwards(obj, move_speed);
+        move_backwards(obj, obj->pos.speed);
   if (obj->key.a == 1)
-        rotate_left(obj, rotation_speed);
+        rotate_left(obj, obj->pos.rot_speed);
   if (obj->key.d == 1)
-    rotate_right(obj, rotation_speed);
+    rotate_right(obj, obj->pos.rot_speed);
 }
