@@ -4,13 +4,14 @@ MINILIB_X = libraries/minilibx_macos/libmlx.a
 FLAGS = -Wall -Wextra -Werror
 
 SRC =	\
-		wolf3d.c \
-		distances.c \
-		initialize_var.c \
-		movement.c \
-		hooks.c \
-		images.c \
-		maps.c
+		srcs/wolf3d.c \
+		srcs/distances.c \
+		srcs/initialize_var.c \
+		srcs/movement.c \
+		srcs/hooks.c \
+		srcs/images.c \
+		srcs/maps.c \
+		srcs/map_two.c
 		
 INPUT_OBJ =	\
 		initialize_var.o \
@@ -19,13 +20,14 @@ INPUT_OBJ =	\
 		movement.o \
 		hooks.o \
 		images.o \
-		maps.o
+		maps.o \
+		map_two.o
 
 OBJ = $(patsubst %.c,%.o,$(addprefix ./, $(SRC)))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) wolf3d.h
+$(NAME): $(OBJ) includes/wolf3d.h
 	make -C libraries/libft/
 	gcc $(FLAGS) -I libraries//libft -c $(SRC)
 	gcc -o $(NAME) $(OBJ) -lm -L libraries/libft/ -lft $(MINILIB_X) -framework OpenGL -framework AppKit

@@ -1,4 +1,16 @@
-#include "wolf3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/25 21:56:25 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/04/25 21:56:25 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/wolf3d.h"
 
 int		tog_key(int key, int on_off)
 {
@@ -16,7 +28,7 @@ void	did_i_win(t_connection *obj)
 			random_map_2(obj);
 		if (obj->map_chosen == 2)
 			error_master5000("YOU WIN!!");
-		if (obj->map_chosen == 1)		
+		if (obj->map_chosen == 1)
 			obj->map_chosen = 2;
 	}
 }
