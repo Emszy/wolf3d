@@ -74,8 +74,8 @@ void			random_map_1(t_connection *obj)
 
 	obj->pos.x = 15;
 	obj->pos.y = 3;
-	obj->pos.win_low = 36;
-	obj->pos.win_high = 40;
+	obj->pos.win_low = 38;
+	obj->pos.win_high = 41;
 	rotate_left(obj, 3);
 	y = -1;
 	while (++y < MAPHEIGHT)

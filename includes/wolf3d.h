@@ -16,7 +16,6 @@
 # include "../libraries/libft/libft.h"
 # include "../libraries/minilibx_macos/mlx.h"
 # include "key_map.h"
-# include <stdlib.h>
 # include <math.h>
 # define WIDTH 			640
 # define HEIGHT 		480
@@ -30,9 +29,9 @@
 # define BLUE			0x002200ff
 # define SHADOW_BLUE 	0x00180499
 # define YELLOW			0x00fff600
-# define SHADOW_YELLOW	0xccc402
 # define GREEN			0x001ae000
 # define SHADOW_GREEN	0x00129301
+# define BROWN			0x00380105
 
 typedef struct	s_position
 {
@@ -46,7 +45,6 @@ typedef struct	s_position
 	double		plane_y;
 	int			win_low;
 	int			win_high;
-	int			texture;
 	int			color;
 }				t_pos;
 
@@ -59,8 +57,8 @@ typedef struct	s_ray
 	double		dir_y;
 	double		side_dist_x;
 	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
+	double		delta_x;
+	double		delta_y;
 	double		perp_wall_dist;
 	int			map_x;
 	int			map_y;

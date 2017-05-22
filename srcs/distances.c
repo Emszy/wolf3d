@@ -21,9 +21,9 @@ void	calc_ray_position(t_connection *obj, int x)
 	obj->ray.dir_y = obj->pos.dir_y + obj->pos.plane_y * obj->ray.camera;
 	obj->ray.map_x = obj->ray.x;
 	obj->ray.map_y = obj->ray.y;
-	obj->ray.delta_dist_x = sqrt(1 + pow(obj->ray.dir_y, 2) /
+	obj->ray.delta_x = sqrt(1 + pow(obj->ray.dir_y, 2) /
 							pow(obj->ray.dir_x, 2));
-	obj->ray.delta_dist_y = sqrt(1 + pow(obj->ray.dir_x, 2) /
+	obj->ray.delta_y = sqrt(1 + pow(obj->ray.dir_x, 2) /
 							pow(obj->ray.dir_y, 2));
 }
 
@@ -33,25 +33,25 @@ void	calc_side_length(t_connection *obj)
 	{
 		obj->ray.step_x = -1;
 		obj->ray.side_dist_x = (obj->ray.x - obj->ray.map_x) *
-								obj->ray.delta_dist_x;
+								obj->ray.delta_x;
 	}
 	else
 	{
 		obj->ray.step_x = 1;
 		obj->ray.side_dist_x = (obj->ray.map_x + 1.0 - obj->ray.x) *
-								obj->ray.delta_dist_x;
+								obj->ray.delta_x;
 	}
 	if (obj->ray.dir_y < 0)
 	{
 		obj->ray.step_y = -1;
 		obj->ray.side_dist_y = (obj->ray.y - obj->ray.map_y) *
-								obj->ray.delta_dist_y;
+								obj->ray.delta_y;
 	}
 	else
 	{
 		obj->ray.step_y = 1;
 		obj->ray.side_dist_y = (obj->ray.map_y + 1.0 - obj->ray.y) *
-								obj->ray.delta_dist_y;
+								obj->ray.delta_y;
 	}
 }
 
@@ -65,13 +65,13 @@ int		calc_line_distance(t_connection *obj)
 	{
 		if (obj->ray.side_dist_x < obj->ray.side_dist_y)
 		{
-			obj->ray.side_dist_x += obj->ray.delta_dist_x;
+			obj->ray.side_dist_x += obj->ray.delta_x;
 			obj->ray.map_x += obj->ray.step_x;
 			side = 0;
 		}
 		else
 		{
-			obj->ray.side_dist_y += obj->ray.delta_dist_y;
+			obj->ray.side_dist_y += obj->ray.delta_y;
 			obj->ray.map_y += obj->ray.step_y;
 			side = 1;
 		}

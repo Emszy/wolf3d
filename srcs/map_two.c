@@ -43,7 +43,7 @@ void			random_map_2(t_connection *obj)
 
 	obj->pos.x = 47;
 	obj->pos.y = 47;
-	obj->pos.win_low = 28;
+	obj->pos.win_low = 29;
 	obj->pos.win_high = 31;
 	rotate_left(obj, 1.6);
 	y = -1;

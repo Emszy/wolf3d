@@ -69,6 +69,10 @@ void	draw(t_connection *obj, int line_height, int side, int x)
 		line_end = HEIGHT - 1;
 	choose_color(obj, side);
 	put_line(obj, x, line_start, line_end);
+	obj->pos.color = BROWN;
+	put_line(obj, x, line_end, HEIGHT);
+	obj->pos.color = BLUE;
+	put_line(obj, x, 0, line_start);
 }
 
 void	put_line(t_connection *obj, int x1, int y1, int y2)
